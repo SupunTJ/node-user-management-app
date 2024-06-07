@@ -12,3 +12,15 @@ const users = [
     name: "Jayaweera",
   },
 ];
+
+const getAllUsers = (callBack) => {
+  callBack(users);
+};
+
+const getUserById = (id, callBack) => {
+  const user = users.find((user) => user.id == id);
+  callBack(user);
+};
+
+exports.getAllUsers = getAllUsers;
+exports.getUserById = getUserById;
