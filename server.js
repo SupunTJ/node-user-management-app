@@ -1,10 +1,11 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const app = require("./app");
+
 const port = 3001;
-const host = "127.0.0.1";
+const host = "localhost";
 const mongoose = require("mongoose");
+const router = require("./router");
 
 // middlewares
 
@@ -28,3 +29,5 @@ connect();
 const server = app.listen(port, host, () => {
   console.log(`Node server is listening to ${server.address().port}`);
 });
+
+app.use("/api", router); // /api is used to specify this is a api url

@@ -12,15 +12,27 @@ app.use(
 
 // apis
 app.get("/users", (req, res) => {
-  controller.getAllUsers((users) => {
-    res.send(users);
+  // getAllUsers function parameters
+  controller.getAllUsers((req, res, next) => {
+    res.send();
   });
 });
 
-app.get("/user", (req, res) => {
-  const id = req.query.id;
-  controller.getUserById(id, (user) => {
-    res.send(user);
+app.post("/createuser", (req, res) => {
+  controller.addUser(req.body, (callBack) => {
+    res.send();
+  });
+});
+
+app.put("/updateuser", (req, res) => {
+  controller.updateUser(req.body, (callBack) => {
+    res.send(callBack);
+  });
+});
+
+app.delete("/deleteuser", (req, res) => {
+  controller.deleteUser(req.body, (callBack) => {
+    res.send(callBack);
   });
 });
 
