@@ -43,11 +43,14 @@ const deleteUser = (req, res, next) => {
   const id = req.body.id;
   User.deleteOne({ id: id })
     .then((response) => {
-      // response is like a instanse
-      res.json({ response }); // return a as a json response
+      if (response.deletedCount === 0) {
+        return res.status(404).json({ error: "User not found" });
+      }
+      res.json({ message: "User deleted successfully" });
     })
     .catch((error) => {
-      res.json({ error });
+      res.status(500).json({ error: "An error occurred" });
+      console.log(error);
     });
 };
 
